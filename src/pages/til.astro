@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Today I Learned (TIL)";
+const description = "Quick learnings, tips, and discoveries from daily programming and life.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">Today I Learned</h1>
+    <p class="text-gray-600">
+      Quick discoveries, tips, and "aha!" moments from daily learning and exploration.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <!-- TIL Entry 1 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-24">August 24, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/css-has-selector" class="hover:text-blue-600">CSS :has() Pseudo-class</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        The :has() pseudo-class allows you to style an element based on its descendants. It's like "parent selectors" in CSS! Perfect for styling cards that contain specific elements.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">CSS</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 2 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-23">August 23, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/python-walrus-operator" class="hover:text-blue-600">Python Walrus Operator (:=)</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Assignment expressions allow you to assign and return a value in the same expression. Super useful in list comprehensions and while loops!
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Python</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 3 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-22">August 22, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/git-worktree" class="hover:text-blue-600">Git Worktree for Multiple Branches</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        git worktree lets you check out multiple branches simultaneously in different directories. Perfect for comparing code or working on multiple features!
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Git</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 4 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-21">August 21, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/typescript-satisfies" class="hover:text-blue-600">TypeScript 'satisfies' Operator</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        The satisfies operator ensures type safety while preserving the exact type. Better than type assertions because it catches errors at compile time!
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">TypeScript</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 5 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-20">August 20, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/docker-multi-stage" class="hover:text-blue-600">Docker Multi-stage Builds</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Use multiple FROM statements to create lean production images while keeping build tools separate. Great for reducing final image size!
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Docker</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 6 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-19">August 19, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/vim-marks" class="hover:text-blue-600">Vim Marks for Quick Navigation</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Set marks with 'ma' and jump back with `a. Capital letters work across files! Game-changer for navigating large codebases.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Vim</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 7 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-18">August 18, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/css-container-queries" class="hover:text-blue-600">CSS Container Queries</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Style components based on their container size, not the viewport! Perfect for truly responsive components that work anywhere.
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">CSS</span>
+        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Responsive</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+
+    <!-- TIL Entry 8 -->
+    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+      <div class="flex items-center text-sm text-gray-500 mb-3">
+        <time datetime="2025-08-17">August 17, 2025</time>
+      </div>
+      <h2 class="text-lg font-semibold text-gray-900 mb-3">
+        <a href="/til/javascript-optional-chaining" class="hover:text-blue-600">JavaScript Optional Chaining with Functions</a>
+      </h2>
+      <p class="text-gray-600 text-sm mb-4">
+        Use obj.method?.() to safely call methods that might not exist. Prevents "TypeError: undefined is not a function" errors!
+      </p>
+      <div class="flex flex-wrap gap-2">
+        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">JavaScript</span>
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+      </div>
+    </article>
+  </div>
+
+  <!-- Load More Button -->
+  <div class="text-center mt-12">
+    <button class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+      Load More TIL Entries
+    </button>
+  </div>
+</BaseLayout>

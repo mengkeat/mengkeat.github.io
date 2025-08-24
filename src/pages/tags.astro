@@ -1,0 +1,151 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Tags - All Topics";
+const description = "Browse all topics and tags across blog posts and TIL entries.";
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-4">All Tags</h1>
+    <p class="text-gray-600">
+      Explore content by topic. Click on any tag to see related posts and TIL entries.
+    </p>
+  </div>
+
+  <!-- Tag Cloud -->
+  <div class="mb-12">
+    <h2 class="text-xl font-semibold text-gray-900 mb-6">Popular Tags</h2>
+    <div class="flex flex-wrap gap-3">
+      <a href="/tags/javascript" class="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors text-sm font-medium">
+        JavaScript <span class="text-blue-600">(12)</span>
+      </a>
+      <a href="/tags/python" class="inline-block bg-green-100 text-green-800 px-4 py-2 rounded-full hover:bg-green-200 transition-colors text-sm font-medium">
+        Python <span class="text-green-600">(18)</span>
+      </a>
+      <a href="/tags/css" class="inline-block bg-purple-100 text-purple-800 px-4 py-2 rounded-full hover:bg-purple-200 transition-colors text-sm font-medium">
+        CSS <span class="text-purple-600">(8)</span>
+      </a>
+      <a href="/tags/astro" class="inline-block bg-orange-100 text-orange-800 px-4 py-2 rounded-full hover:bg-orange-200 transition-colors text-sm font-medium">
+        Astro <span class="text-orange-600">(5)</span>
+      </a>
+      <a href="/tags/machine-learning" class="inline-block bg-red-100 text-red-800 px-4 py-2 rounded-full hover:bg-red-200 transition-colors text-sm font-medium">
+        Machine Learning <span class="text-red-600">(14)</span>
+      </a>
+      <a href="/tags/web-dev" class="inline-block bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full hover:bg-yellow-200 transition-colors text-sm font-medium">
+        Web Dev <span class="text-yellow-600">(22)</span>
+      </a>
+      <a href="/tags/til" class="inline-block bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full hover:bg-indigo-200 transition-colors text-sm font-medium">
+        TIL <span class="text-indigo-600">(45)</span>
+      </a>
+      <a href="/tags/typescript" class="inline-block bg-blue-100 text-blue-800 px-4 py-2 rounded-full hover:bg-blue-200 transition-colors text-sm font-medium">
+        TypeScript <span class="text-blue-600">(9)</span>
+      </a>
+      <a href="/tags/docker" class="inline-block bg-cyan-100 text-cyan-800 px-4 py-2 rounded-full hover:bg-cyan-200 transition-colors text-sm font-medium">
+        Docker <span class="text-cyan-600">(7)</span>
+      </a>
+      <a href="/tags/git" class="inline-block bg-gray-100 text-gray-800 px-4 py-2 rounded-full hover:bg-gray-200 transition-colors text-sm font-medium">
+        Git <span class="text-gray-600">(11)</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Alphabetical Tag List -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <!-- A-F -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">A - F</h3>
+      <ul class="space-y-2">
+        <li><a href="/tags/astro" class="text-gray-600 hover:text-gray-900 transition-colors">Astro (5)</a></li>
+        <li><a href="/tags/css" class="text-gray-600 hover:text-gray-900 transition-colors">CSS (8)</a></li>
+        <li><a href="/tags/data-science" class="text-gray-600 hover:text-gray-900 transition-colors">Data Science (16)</a></li>
+        <li><a href="/tags/docker" class="text-gray-600 hover:text-gray-900 transition-colors">Docker (7)</a></li>
+        <li><a href="/tags/frontend" class="text-gray-600 hover:text-gray-900 transition-colors">Frontend (13)</a></li>
+      </ul>
+    </div>
+
+    <!-- G-M -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">G - M</h3>
+      <ul class="space-y-2">
+        <li><a href="/tags/git" class="text-gray-600 hover:text-gray-900 transition-colors">Git (11)</a></li>
+        <li><a href="/tags/javascript" class="text-gray-600 hover:text-gray-900 transition-colors">JavaScript (12)</a></li>
+        <li><a href="/tags/jupyter" class="text-gray-600 hover:text-gray-900 transition-colors">Jupyter (6)</a></li>
+        <li><a href="/tags/katex" class="text-gray-600 hover:text-gray-900 transition-colors">KaTeX (3)</a></li>
+        <li><a href="/tags/machine-learning" class="text-gray-600 hover:text-gray-900 transition-colors">Machine Learning (14)</a></li>
+        <li><a href="/tags/marimo" class="text-gray-600 hover:text-gray-900 transition-colors">Marimo (4)</a></li>
+      </ul>
+    </div>
+
+    <!-- N-Z -->
+    <div>
+      <h3 class="text-lg font-semibold text-gray-900 mb-4">N - Z</h3>
+      <ul class="space-y-2">
+        <li><a href="/tags/python" class="text-gray-600 hover:text-gray-900 transition-colors">Python (18)</a></li>
+        <li><a href="/tags/responsive" class="text-gray-600 hover:text-gray-900 transition-colors">Responsive (5)</a></li>
+        <li><a href="/tags/tailwind" class="text-gray-600 hover:text-gray-900 transition-colors">Tailwind (7)</a></li>
+        <li><a href="/tags/til" class="text-gray-600 hover:text-gray-900 transition-colors">TIL (45)</a></li>
+        <li><a href="/tags/typescript" class="text-gray-600 hover:text-gray-900 transition-colors">TypeScript (9)</a></li>
+        <li><a href="/tags/vim" class="text-gray-600 hover:text-gray-900 transition-colors">Vim (8)</a></li>
+        <li><a href="/tags/web-dev" class="text-gray-600 hover:text-gray-900 transition-colors">Web Dev (22)</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Recent Posts by Tag -->
+  <div class="mt-16">
+    <h2 class="text-xl font-semibold text-gray-900 mb-6">Recent Posts by Category</h2>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Programming Category -->
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Programming</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="/blog/python-walrus-operator" class="block">
+              <div class="text-sm text-gray-600 mb-1">Python</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">Understanding the Walrus Operator</div>
+            </a>
+          </li>
+          <li>
+            <a href="/til/typescript-satisfies" class="block">
+              <div class="text-sm text-gray-600 mb-1">TypeScript</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">The 'satisfies' Operator</div>
+            </a>
+          </li>
+          <li>
+            <a href="/til/javascript-optional-chaining" class="block">
+              <div class="text-sm text-gray-600 mb-1">JavaScript</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">Optional Chaining with Functions</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Web Development Category -->
+      <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-4">Web Development</h3>
+        <ul class="space-y-3">
+          <li>
+            <a href="/blog/building-with-astro" class="block">
+              <div class="text-sm text-gray-600 mb-1">Astro</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">Building with Astro and Tailwind</div>
+            </a>
+          </li>
+          <li>
+            <a href="/til/css-has-selector" class="block">
+              <div class="text-sm text-gray-600 mb-1">CSS</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">CSS :has() Pseudo-class</div>
+            </a>
+          </li>
+          <li>
+            <a href="/til/css-container-queries" class="block">
+              <div class="text-sm text-gray-600 mb-1">CSS</div>
+              <div class="text-gray-900 hover:text-blue-600 transition-colors">Container Queries</div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

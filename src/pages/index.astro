@@ -1,8 +1,214 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = "Mengkeat's Blog - Daily Thoughts & Learning";
+const description = "A personal blog featuring daily posts and Today I Learned (TIL) entries about technology, programming, and life.";
 ---
-<BaseLayout title="Home — Mengkeat">
-  <h1>Hello — I'm Mengkeat</h1>
-  <p>Welcome to my new Astro site. This is a minimal scaffold configured to publish to GitHub Pages (via the <code>docs/</code> folder).</p>
-  <p>Next steps: customize content in <code>src/pages</code>, add styling or integrations, then push to GitHub.</p>
+
+<BaseLayout title={title} description={description}>
+  <!-- Hero Section -->
+  <section class="mb-12">
+    <div class="bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg p-8 mb-8">
+      <h1 class="text-4xl font-bold mb-4">Welcome to My Digital Garden</h1>
+      <p class="text-xl text-blue-100 max-w-2xl">
+        A place where I document my daily thoughts, share what I learn, and explore the intersection of technology and life.
+      </p>
+    </div>
+  </section>
+
+  <!-- Two Column Layout for Content -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+    <!-- Daily Blog Column -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Daily Blog</h2>
+        <a href="/blog" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View all →</a>
+      </div>
+      
+      <div class="space-y-6">
+        <!-- Blog Post 1 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-24">August 24, 2025</time>
+            <span class="mx-2">•</span>
+            <span>5 min read</span>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            <a href="/blog/building-with-astro" class="hover:text-blue-600">Building a Modern Blog with Astro and Tailwind</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Exploring the power of Astro for building fast, content-focused websites with modern tooling and excellent developer experience.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Astro</span>
+            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Tailwind</span>
+            <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Web Dev</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 2 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-23">August 23, 2025</time>
+            <span class="mx-2">•</span>
+            <span>3 min read</span>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            <a href="/blog/jupyter-notebooks-web" class="hover:text-blue-600">Integrating Jupyter Notebooks in Web Applications</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-4">
+            How to seamlessly embed and render Jupyter notebooks in web applications for better data science communication.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Jupyter</span>
+            <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Data Science</span>
+            <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Python</span>
+          </div>
+        </article>
+
+        <!-- Blog Post 3 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-22">August 22, 2025</time>
+            <span class="mx-2">•</span>
+            <span>4 min read</span>
+          </div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">
+            <a href="/blog/mathematical-notation-web" class="hover:text-blue-600">Beautiful Mathematical Notation on the Web</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-4">
+            Implementing LaTeX-style mathematical equations in web content using KaTeX and modern markdown processors.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Math</span>
+            <span class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full">LaTeX</span>
+            <span class="inline-block bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">KaTeX</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- TIL Column -->
+    <section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-gray-900">Today I Learned</h2>
+        <a href="/til" class="text-blue-600 hover:text-blue-800 text-sm font-medium">View all →</a>
+      </div>
+      
+      <div class="space-y-4">
+        <!-- TIL Entry 1 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-24">August 24, 2025</time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">
+            <a href="/til/css-has-selector" class="hover:text-blue-600">CSS :has() Pseudo-class</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">
+            The :has() pseudo-class allows you to style an element based on its descendants. It's like "parent selectors" in CSS!
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">CSS</span>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+          </div>
+        </article>
+
+        <!-- TIL Entry 2 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-23">August 23, 2025</time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">
+            <a href="/til/python-walrus-operator" class="hover:text-blue-600">Python Walrus Operator (:=)</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">
+            Assignment expressions allow you to assign and return a value in the same expression. Super useful in list comprehensions!
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Python</span>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+          </div>
+        </article>
+
+        <!-- TIL Entry 3 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-22">August 22, 2025</time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">
+            <a href="/til/git-worktree" class="hover:text-blue-600">Git Worktree for Multiple Branches</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">
+            git worktree lets you check out multiple branches simultaneously in different directories. Perfect for comparing code!
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Git</span>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+          </div>
+        </article>
+
+        <!-- TIL Entry 4 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-21">August 21, 2025</time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">
+            <a href="/til/typescript-satisfies" class="hover:text-blue-600">TypeScript 'satisfies' Operator</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">
+            The satisfies operator ensures type safety while preserving the exact type. Better than type assertions!
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">TypeScript</span>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+          </div>
+        </article>
+
+        <!-- TIL Entry 5 -->
+        <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-4 hover:shadow-md transition-shadow">
+          <div class="flex items-center text-sm text-gray-500 mb-2">
+            <time datetime="2025-08-20">August 20, 2025</time>
+          </div>
+          <h3 class="text-base font-semibold text-gray-900 mb-2">
+            <a href="/til/docker-multi-stage" class="hover:text-blue-600">Docker Multi-stage Builds</a>
+          </h3>
+          <p class="text-gray-600 text-sm mb-3">
+            Use multiple FROM statements to create lean production images while keeping build tools separate.
+          </p>
+          <div class="flex flex-wrap gap-1">
+            <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Docker</span>
+            <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">TIL</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <!-- Featured Section -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Featured Content</h2>
+    <div class="bg-gradient-to-r from-purple-50 to-blue-50 rounded-lg p-6 border border-purple-200">
+      <div class="flex items-start space-x-4">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+            </svg>
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Interactive Notebooks Coming Soon!</h3>
+          <p class="text-gray-600 mb-4">
+            I'm working on integrating Jupyter and Marimo notebooks directly into blog posts. This will allow for interactive data science content with live code execution and mathematical visualizations.
+          </p>
+          <a href="/blog/interactive-notebooks" class="inline-flex items-center text-purple-600 hover:text-purple-800 font-medium text-sm">
+            Learn more 
+            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 </BaseLayout>

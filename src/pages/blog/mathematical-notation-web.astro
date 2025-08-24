@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = "Beautiful Mathematical Notation on the Web";
+const description = "Implementing LaTeX-style mathematical equations in web content using KaTeX and modern markdown processors.";
+---
+
+<BaseLayout title={title} description={description}>
+  <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+    <!-- Article Header -->
+    <header class="mb-8">
+      <div class="flex items-center text-sm text-gray-500 mb-4">
+        <time datetime="2025-08-22">August 22, 2025</time>
+        <span class="mx-2">•</span>
+        <span>4 min read</span>
+        <span class="mx-2">•</span>
+        <span>by Mengkeat</span>
+      </div>
+      
+      <h1 class="text-3xl font-bold text-gray-900 mb-4">Beautiful Mathematical Notation on the Web</h1>
+      
+      <p class="text-xl text-gray-600 leading-relaxed mb-6">
+        Implementing LaTeX-style mathematical equations in web content using KaTeX and modern markdown processors.
+      </p>
+      
+      <div class="flex flex-wrap gap-2 mb-6">
+        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-3 py-1 rounded-full">Math</span>
+        <span class="inline-block bg-pink-100 text-pink-800 text-xs px-3 py-1 rounded-full">LaTeX</span>
+        <span class="inline-block bg-cyan-100 text-cyan-800 text-xs px-3 py-1 rounded-full">KaTeX</span>
+        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-3 py-1 rounded-full">Web Dev</span>
+      </div>
+    </header>
+
+    <!-- Article Content -->
+    <div class="max-w-none">
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Mathematical notation on the web has come a long way. With tools like KaTeX, we can now render beautiful, 
+        LaTeX-style equations that are fast, accessible, and work across all modern browsers.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Why KaTeX?</h2>
+      <p class="text-gray-700 leading-relaxed mb-6">
+        KaTeX is a fast, self-contained JavaScript library for rendering math notation. Unlike MathJax, 
+        KaTeX renders equations synchronously and doesn't require a network connection for fonts.
+      </p>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Basic Examples</h2>
+      
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Here's a simple inline equation: <span class="math inline">E = mc^2</span>
+      </p>
+      
+      <p class="text-gray-700 leading-relaxed mb-4">And here's a block equation for the quadratic formula:</p>
+      
+      <div class="math display">x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}</div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">More Complex Examples</h2>
+      
+      <p class="text-gray-700 leading-relaxed mb-4">Matrix multiplication:</p>
+      <div class="math display">
+        \begin{bmatrix}
+        a & b \\
+        c & d
+        \end{bmatrix}
+        \begin{bmatrix}
+        e & f \\
+        g & h
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+        ae + bg & af + bh \\
+        ce + dg & cf + dh
+        \end{bmatrix}
+      </div>
+
+      <p class="text-gray-700 leading-relaxed mb-4">Calculus - the fundamental theorem:</p>
+      <div class="math display">\int_a^b f'(x) \, dx = f(b) - f(a)</div>
+
+      <p class="text-gray-700 leading-relaxed mb-4">Statistics - normal distribution:</p>
+      <div class="math display">
+        f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Implementation in Astro</h2>
+      
+      <p class="text-gray-700 leading-relaxed mb-6">
+        Setting up KaTeX in Astro is straightforward. You need to install the necessary packages 
+        and configure your markdown processor to handle math notation.
+      </p>
+
+      <pre class="bg-gray-100 rounded-lg p-4 mb-6 overflow-x-auto"><code class="text-sm">npm install remark-math rehype-katex katex</code></pre>
+
+      <p class="text-gray-700 leading-relaxed mb-4">Then configure your <code class="bg-gray-100 px-2 py-1 rounded text-sm">astro.config.mjs</code>:</p>
+
+      <pre class="bg-gray-100 rounded-lg p-4 mb-6 overflow-x-auto"><code class="text-sm">{`import { defineConfig } from 'astro/config';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+
+export default defineConfig({
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [rehypeKatex],
+  }
+});`}</code></pre>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Best Practices</h2>
+      
+      <ul class="list-disc list-inside space-y-2 mb-6 text-gray-700">
+        <li><strong>Performance:</strong> KaTeX renders faster than MathJax</li>
+        <li><strong>Accessibility:</strong> Includes proper ARIA labels</li>
+        <li><strong>Fallbacks:</strong> Works without JavaScript enabled</li>
+        <li><strong>Mobile:</strong> Equations scale well on small screens</li>
+      </ul>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Advanced Features</h2>
+      
+      <p class="text-gray-700 leading-relaxed mb-4">KaTeX supports many advanced mathematical constructs:</p>
+      
+      <div class="math display">\sum_{n=1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}</div>
+
+      <div class="math display">\lim_{x \to \infty} \left(1 + \frac{1}{x}\right)^x = e</div>
+
+      <p class="text-gray-700 leading-relaxed mb-4">And complex multi-line equations:</p>
+      
+      <div class="math display">
+        \begin{align}
+        \nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \\
+        \nabla \cdot \mathbf{B} &= 0 \\
+        \nabla \times \mathbf{E} &= -\frac{\partial \mathbf{B}}{\partial t} \\
+        \nabla \times \mathbf{B} &= \mu_0\mathbf{J} + \mu_0\epsilon_0\frac{\partial \mathbf{E}}{\partial t}
+        \end{align}
+      </div>
+
+      <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Conclusion</h2>
+      
+      <p class="text-gray-700 leading-relaxed mb-6">
+        With KaTeX and modern web tools, we can create beautiful mathematical content that's 
+        fast, accessible, and professional. Whether you're writing about machine learning, 
+        physics, or pure mathematics, these tools make it easy to express complex ideas clearly.
+      </p>
+    </div>
+
+    <!-- Article Footer -->
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-4">
+          <img src="https://via.placeholder.com/40x40" alt="Mengkeat" class="w-10 h-10 rounded-full">
+          <div>
+            <div class="text-sm font-medium text-gray-900">Mengkeat</div>
+            <div class="text-sm text-gray-500">Software Engineer & Blogger</div>
+          </div>
+        </div>
+        
+        <div class="flex space-x-4">
+          <button class="text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M15 8a3 3 0 10-2.977-2.63l-4.94 2.47a3 3 0 100 4.319l4.94 2.47a3 3 0 10.895-1.789l-4.94-2.47a3.027 3.027 0 000-.74l4.94-2.47C13.456 7.68 14.19 8 15 8z"></path>
+            </svg>
+          </button>
+          <button class="text-gray-400 hover:text-gray-600 transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </footer>
+  </article>
+
+  <!-- Related Posts -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">Related Posts</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+          <a href="/blog/jupyter-notebooks-web" class="hover:text-blue-600">Integrating Jupyter Notebooks</a>
+        </h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Learn how to embed interactive notebooks in your web applications.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Jupyter</span>
+          <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Python</span>
+        </div>
+      </article>
+
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+        <h3 class="text-lg font-semibold text-gray-900 mb-2">
+          <a href="/blog/marimo-reactive-notebooks" class="hover:text-blue-600">Reactive Notebooks with Marimo</a>
+        </h3>
+        <p class="text-gray-600 text-sm mb-3">
+          Discover the power of reactive programming in data science workflows.
+        </p>
+        <div class="flex flex-wrap gap-1">
+          <span class="inline-block bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">Marimo</span>
+          <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Notebooks</span>
+        </div>
+      </article>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .math.inline {
+    display: inline;
+  }
+  
+  .math.display {
+    display: block;
+    text-align: center;
+    margin: 1.5rem 0;
+  }
+</style>
