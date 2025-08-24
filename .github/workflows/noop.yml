@@ -1,0 +1,9 @@
+name: noop
+
+on: [push]
+
+jobs:
+  noop:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "This repo publishes from the /docs folder; no Action is required."

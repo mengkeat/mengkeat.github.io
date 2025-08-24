@@ -82,6 +82,13 @@ out
 .nuxt
 dist
 
+# Astro build cache and temp files
+.astro/
+
+# Build logs
+build.log
+*.log
+
 # Gatsby files
 .cache/
 # Comment in the public line in if your project uses Gatsby and not Next.js
