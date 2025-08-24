@@ -1,0 +1,11 @@
+---
+// KaTeX.astro: Astro component to render LaTeX math using KaTeX
+import katex from 'katex';
+import 'katex/dist/katex.min.css';
+
+const { expression, displayMode = false } = Astro.props;
+
+const html = katex.renderToString(expression, { displayMode });
+---
+
+<div class={displayMode ? 'math display' : 'math inline'} set:html={html}></div>
