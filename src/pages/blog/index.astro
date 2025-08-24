@@ -1,8 +1,15 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = "Blog - All Posts";
 const description = "All blog posts about technology, programming, and life experiences.";
+
+const allPosts = await getCollection('blog', ({ data }) => {
+  return data.draft !== true;
+});
+
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <BaseLayout title={title} description={description}>
@@ -14,95 +21,35 @@ const description = "All blog posts about technology, programming, and life expe
   </div>
 
   <div class="space-y-8">
-    <!-- Blog Post 1 -->
-    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div class="flex items-center text-sm text-gray-500 mb-3">
-        <time datetime="2025-08-24">August 24, 2025</time>
-        <span class="mx-2">•</span>
-        <span>5 min read</span>
-      </div>
-      <h2 class="text-xl font-semibold text-gray-900 mb-3">
-        <a href="/blog/building-with-astro" class="hover:text-blue-600">Building a Modern Blog with Astro and Tailwind</a>
-      </h2>
-      <p class="text-gray-600 mb-4">
-        Exploring the power of Astro for building fast, content-focused websites with modern tooling and excellent developer experience. We'll cover setting up Tailwind CSS, creating reusable layouts, and optimizing for performance.
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Astro</span>
-        <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Tailwind</span>
-        <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Web Dev</span>
-      </div>
-    </article>
-
-    <!-- Blog Post 2 -->
-    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div class="flex items-center text-sm text-gray-500 mb-3">
-        <time datetime="2025-08-23">August 23, 2025</time>
-        <span class="mx-2">•</span>
-        <span>7 min read</span>
-      </div>
-      <h2 class="text-xl font-semibold text-gray-900 mb-3">
-        <a href="/blog/jupyter-notebooks-web" class="hover:text-blue-600">Integrating Jupyter Notebooks in Web Applications</a>
-      </h2>
-      <p class="text-gray-600 mb-4">
-        How to seamlessly embed and render Jupyter notebooks in web applications for better data science communication. We'll explore nbconvert, custom renderers, and interactive widgets that work in production.
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-block bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Jupyter</span>
-        <span class="inline-block bg-red-100 text-red-800 text-xs px-2 py-1 rounded-full">Data Science</span>
-        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Python</span>
-      </div>
-    </article>
-
-    <!-- Blog Post 3 -->
-    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div class="flex items-center text-sm text-gray-500 mb-3">
-        <time datetime="2025-08-22">August 22, 2025</time>
-        <span class="mx-2">•</span>
-        <span>4 min read</span>
-      </div>
-      <h2 class="text-xl font-semibold text-gray-900 mb-3">
-        <a href="/blog/mathematical-notation-web" class="hover:text-blue-600">Beautiful Mathematical Notation on the Web</a>
-      </h2>
-      <p class="text-gray-600 mb-4">
-        Implementing LaTeX-style mathematical equations in web content using KaTeX and modern markdown processors. Learn how to render complex formulas, inline equations, and interactive mathematical content.
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs px-2 py-1 rounded-full">Math</span>
-        <span class="inline-block bg-pink-100 text-pink-800 text-xs px-2 py-1 rounded-full">LaTeX</span>
-        <span class="inline-block bg-cyan-100 text-cyan-800 text-xs px-2 py-1 rounded-full">KaTeX</span>
-      </div>
-    </article>
-
-    <!-- Blog Post 4 -->
-    <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
-      <div class="flex items-center text-sm text-gray-500 mb-3">
-        <time datetime="2025-08-21">August 21, 2025</time>
-        <span class="mx-2">•</span>
-        <span>6 min read</span>
-      </div>
-      <h2 class="text-xl font-semibold text-gray-900 mb-3">
-        <a href="/blog/marimo-reactive-notebooks" class="hover:text-blue-600">Reactive Notebooks with Marimo</a>
-      </h2>
-      <p class="text-gray-600 mb-4">
-        Discover Marimo, a new approach to Python notebooks that brings reactivity and deterministic execution. Perfect for data analysis, machine learning prototyping, and interactive documentation.
-      </p>
-      <div class="flex flex-wrap gap-2">
-        <span class="inline-block bg-emerald-100 text-emerald-800 text-xs px-2 py-1 rounded-full">Marimo</span>
-        <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Python</span>
-        <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Notebooks</span>
-      </div>
-    </article>
+    {sortedPosts.map((post) => (
+      <article class="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+        <div class="flex items-center text-sm text-gray-500 mb-3">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+          <span class="mx-2">•</span>
+          <span>by {post.data.author}</span>
+        </div>
+        <h2 class="text-xl font-semibold text-gray-900 mb-3">
+          <a href={`/blog/${post.slug}`} class="hover:text-blue-600">{post.data.title}</a>
+        </h2>
+        <p class="text-gray-600 mb-4">
+          {post.data.description}
+        </p>
+        {post.data.tags && post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        )}
+      </article>
+    ))}
   </div>
-
-  <!-- Pagination -->
-  <nav class="flex justify-center mt-12" aria-label="Pagination">
-    <div class="flex space-x-2">
-      <span class="px-3 py-2 text-sm text-gray-500 bg-gray-100 rounded-md">Previous</span>
-      <span class="px-3 py-2 text-sm bg-blue-600 text-white rounded-md">1</span>
-      <a href="/blog/page/2" class="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">2</a>
-      <a href="/blog/page/3" class="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">3</a>
-      <a href="/blog/page/2" class="px-3 py-2 text-sm text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50">Next</a>
-    </div>
-  </nav>
 </BaseLayout>
