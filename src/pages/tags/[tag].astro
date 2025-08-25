@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { collectTags } from '../../lib/tags';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const tags = await collectTags();
+  return tags.map(t => ({ params: { tag: t.slug } }));
+}
+
+const tagSlug = Astro.params.tag;
+const tags = await collectTags();
+const tagInfo = tags.find(t => t.slug === tagSlug);
+
+if (!tagInfo) {
+  // Let Astro render a 404 by throwing
+  throw new Error(`Tag not found: ${tagSlug}`);
+}
+
+const tagName = tagInfo.tag;
+
+// gather posts from collections that include this tag
+const blogItems = await getCollection('blog');
+const tilItems = await getCollection('til');
+
+function hasTag(item: any, name: string) {
+  const tags = (item.data?.tags ?? []).map(String);
+  return tags.includes(name);
+}
+
+const matched = [
+  ...blogItems.filter(i => hasTag(i, tagName)).map(i => ({ ...i, collection: 'blog' })),
+  ...tilItems.filter(i => hasTag(i, tagName)).map(i => ({ ...i, collection: 'til' })),
+];
+
+// sort by pubDate desc
+matched.sort((a, b) => {
+  const da = new Date(a.data.pubDate).getTime();
+  const db = new Date(b.data.pubDate).getTime();
+  return db - da;
+});
+
+const title = `Tag: ${tagName}`;
+const description = `All posts and TIL entries tagged "${tagName}" (${tagInfo.count}).`;
+---
+<BaseLayout title={title} description={description}>
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 mb-2">Tag: {tagName}</h1>
+    <p class="text-sm text-gray-600">Showing {tagInfo.count} result{tagInfo.count === 1 ? '' : 's'}.</p>
+  </div>
+
+  {matched.length ? (
+    <ul class="space-y-6">
+      {matched.map(item => (
+        <li class="border-b last:border-b-0 pb-4">
+          <a href={item.collection === 'blog' ? `/blog/${item.slug}` : `/til/${item.slug}`} class="block">
+            <div class="text-sm text-gray-600 mb-1">{item.collection === 'blog' ? 'Blog' : 'TIL'}</div>
+            <div class="text-lg font-semibold text-gray-900 hover:text-blue-600 transition-colors">
+              {item.data.title}
+            </div>
+            <div class="text-sm text-gray-500 mt-1">{new Date(item.data.pubDate).toLocaleDateString()}</div>
+            {item.data.description ? (
+              <p class="text-sm text-gray-700 mt-2">{item.data.description}</p>
+            ) : null}
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="text-gray-600">No posts found for this tag.</p>
+  )}
+</BaseLayout>
