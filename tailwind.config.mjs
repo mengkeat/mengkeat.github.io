@@ -46,33 +46,37 @@ export default {
         }
       },
       lineHeight: {
-        'relaxed-reading': '1.7',
-        'tight-heading': '1.2',
+        'relaxed-reading': '1.75',
+        'tight-heading': '1.15',
       },
       letterSpacing: {
-        'slight': '0.01em',
+        'slight': '0.015em',
       },
       typography: {
         DEFAULT: {
           css: {
             color: '#44403c',
-            lineHeight: '1.7',
+            lineHeight: '1.75',
+            fontSize: '1.125rem',
             a: {
               color: '#f59e0b',
               textDecoration: 'none',
+              fontWeight: '500',
               '&:hover': {
                 color: '#d97706',
               },
             },
             strong: {
               color: '#1c1917',
+              fontWeight: '600',
             },
             code: {
               backgroundColor: '#faf8f5',
               color: '#44403c',
-              padding: '0.25rem 0.375rem',
-              borderRadius: '0.25rem',
+              padding: '0.25rem 0.5rem',
+              borderRadius: '0.375rem',
               fontWeight: '500',
+              fontSize: '0.875rem',
             },
             'code::before': {
               content: '""',
@@ -83,10 +87,44 @@ export default {
             pre: {
               backgroundColor: '#fdfcfb',
               border: '1px solid #e7e5e4',
+              borderRadius: '0.5rem',
+              padding: '1.5rem',
+              fontSize: '0.875rem',
+              lineHeight: '1.6',
             },
             blockquote: {
               borderLeftColor: '#f59e0b',
+              borderLeftWidth: '4px',
+              paddingLeft: '1.5rem',
+              fontStyle: 'italic',
               color: '#78716c',
+            },
+            h1: {
+              fontSize: '2.25rem',
+              fontWeight: '300',
+              lineHeight: '1.15',
+              letterSpacing: '0.015em',
+              color: '#1c1917',
+            },
+            h2: {
+              fontSize: '1.875rem',
+              fontWeight: '400',
+              lineHeight: '1.2',
+              color: '#1c1917',
+              marginTop: '2.5rem',
+              marginBottom: '1.5rem',
+            },
+            h3: {
+              fontSize: '1.5rem',
+              fontWeight: '500',
+              lineHeight: '1.25',
+              color: '#1c1917',
+              marginTop: '2rem',
+              marginBottom: '1rem',
+            },
+            p: {
+              marginTop: '1.25rem',
+              marginBottom: '1.25rem',
             },
           },
         },

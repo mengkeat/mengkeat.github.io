@@ -7,10 +7,8 @@ export interface Props {
     title: string;
     description: string;
     pubDate: Date;
-    updatedDate?: Date;
-    author: string;
     tags: string[];
-    heroImage?: string;
+    category: string;
   };
 }
 
@@ -31,12 +29,9 @@ const { formatDateLong } = await import('../lib/utils');
         <time datetime={frontmatter.pubDate.toISOString()} class="font-medium">
           {formatDateLong(frontmatter.pubDate)}
         </time>
-        {frontmatter.updatedDate && (
-          <span class="font-medium">
-            Updated: {formatDateLong(frontmatter.updatedDate)}
-          </span>
-        )}
-        <span>by {frontmatter.author}</span>
+        <span class="font-medium">
+          Category: {frontmatter.category}
+        </span>
       </div>
       {frontmatter.tags && frontmatter.tags.length > 0 && (
         <div class="flex flex-wrap gap-2">

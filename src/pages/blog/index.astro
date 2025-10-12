@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { slugify } from '../../lib/tags';
+import ContentCard from '../../components/ContentCard.astro';
 
 const title = "Blog - All Posts";
 const description = "All blog posts about technology, programming, and life experiences.";
@@ -21,43 +21,16 @@ const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pu
     </p>
   </div>
 
-  <div class="space-y-12">
+  <div class="space-y-8 md:space-y-12">
     {sortedPosts.map((post) => (
-      <article class="group">
-        <div class="flex flex-col md:flex-row md:items-start gap-6">
-          <div class="md:w-32 flex-shrink-0">
-            <time class="text-sm text-stone-500 font-medium" datetime={post.data.pubDate.toISOString()}>
-              {post.data.pubDate.toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })}
-            </time>
-          </div>
-          <div class="flex-1">
-            <h2 class="text-xl font-medium text-stone-900 mb-3 leading-tight-heading">
-              <a href={`/blog/${post.slug}`} class="group-hover:text-amber-700 transition-colors duration-200">
-                {post.data.title}
-              </a>
-            </h2>
-            <p class="text-stone-600 mb-4 leading-relaxed-reading">
-              {post.data.description}
-            </p>
-            {post.data.tags && post.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-2">
-                {post.data.tags.slice(0, 4).map((tag) => (
-                  <a
-                    href={`/tags/${slugify(tag)}`}
-                    class="inline-block bg-warm-100 text-stone-600 text-sm px-3 py-1 rounded-full hover:bg-warm-200 transition-colors duration-200"
-                  >
-                    {tag}
-                  </a>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      </article>
+      <ContentCard
+        title={post.data.title}
+        description={post.data.description}
+        date={post.data.pubDate}
+        tags={post.data.tags}
+        url={`/blog/${post.slug}`}
+        type="blog"
+      />
     ))}
   </div>
 </BaseLayout>
