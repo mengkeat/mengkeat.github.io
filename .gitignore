@@ -163,7 +163,6 @@ ENV/
 
 # UV package manager
 .uv/
-uv.lock
 
 # Build output
 output/

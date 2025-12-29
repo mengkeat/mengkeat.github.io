@@ -282,6 +282,9 @@ class SiteBuilder:
         print("  📦 Copying static files...")
         self.copy_static()
 
+        print("  🔧 Creating .nojekyll file...")
+        (self.output_dir / ".nojekyll").touch()
+
         print("✅ Build complete!")
         print(f"   Output: {self.output_dir.absolute()}")
 
