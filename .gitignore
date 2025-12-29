@@ -82,9 +82,6 @@ out
 .nuxt
 dist
 
-# Astro build cache and temp files
-.astro/
-
 # Build output (handled by GitHub Actions)
 docs/
 
