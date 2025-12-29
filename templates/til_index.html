@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Today I Learned - Mengkeat's Digital Garden{% endblock %}
+{% block description %}Short notes and quick learnings{% endblock %}
+
+{% block content %}
+<div class="mb-12">
+    <h1 class="text-4xl md:text-5xl font-semibold text-stone-900 mb-6" style="line-height: 1.2; letter-spacing: -0.01em;">
+        Today I Learned
+    </h1>
+    <p class="text-xl text-stone-600" style="line-height: 1.7;">
+        Quick notes, snippets, and things I've discovered along the way.
+    </p>
+</div>
+
+<div class="space-y-8">
+    {% for til in tils %}
+    <article class="group">
+        <a href="{{ til.url }}" class="block">
+            <div class="flex flex-col space-y-3">
+                <div class="flex items-center space-x-2 text-sm text-stone-500">
+                    <time datetime="{{ til.date.isoformat() }}">{{ til.date.strftime('%B %d, %Y') }}</time>
+                    {% if til.category %}
+                    <span>•</span>
+                    <span class="text-amber-600 font-medium">{{ til.category }}</span>
+                    {% endif %}
+                </div>
+                <h2 class="text-xl font-semibold text-stone-900 group-hover:text-amber-700 transition-colors duration-200">
+                    {{ til.title }}
+                </h2>
+                <p class="text-stone-600" style="line-height: 1.7;">
+                    {{ til.description }}
+                </p>
+                {% if til.tags %}
+                <div class="flex flex-wrap gap-2 pt-2">
+                    {% for tag in til.tags %}
+                    <span class="px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-sm font-medium">
+                        {{ tag }}
+                    </span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </a>
+    </article>
+    {% endfor %}
+</div>
+{% endblock %}
