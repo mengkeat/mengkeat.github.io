@@ -1,54 +1,30 @@
 {% extends "base.html" %}
 
-{% block title %}{{ tag }} - Tags - Mengkeat's Digital Garden{% endblock %}
+{% block title %}{{ tag }} - Tags - Mengkeat's Blog{% endblock %}
 {% block description %}All posts tagged with {{ tag }}{% endblock %}
 
 {% block content %}
-<div class="mb-12">
-    <div class="mb-4">
-        <a href="/tags/" class="text-amber-600 hover:text-amber-700 font-medium transition-colors duration-200 flex items-center inline-flex">
-            <svg class="mr-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-            </svg>
-            All Tags
-        </a>
-    </div>
-    <h1 class="text-4xl md:text-5xl font-semibold text-stone-900 mb-6" style="line-height: 1.2; letter-spacing: -0.01em;">
-        <span class="text-amber-600">#</span>{{ tag }}
+<section>
+    <p class="mb-4">
+        <a href="/tags/" class="sidebar-link text-sm">← All Tags</a>
+    </p>
+    
+    <h1 class="text-2xl font-semibold text-primary mb-2">
+        <span class="text-muted">#</span>{{ tag }}
     </h1>
-    <p class="text-xl text-stone-600" style="line-height: 1.7;">
+    <p class="text-secondary mb-8">
         {{ items|length }} {% if items|length == 1 %}post{% else %}posts{% endif %} tagged with <strong>{{ tag }}</strong>.
     </p>
-</div>
-
-<div class="space-y-10">
-    {% for item in items %}
-    <article class="group">
-        <a href="{{ item.url }}" class="block">
-            <div class="flex flex-col space-y-3">
-                <div class="flex items-center space-x-2 text-sm text-stone-500">
-                    <time datetime="{{ item.date.isoformat() }}">{{ item.date.strftime('%B %d, %Y') }}</time>
-                    <span>•</span>
-                    <span class="text-amber-600 font-medium">{{ item.type|upper }}</span>
-                </div>
-                <h2 class="text-2xl font-semibold text-stone-900 group-hover:text-amber-700 transition-colors duration-200">
-                    {{ item.title }}
-                </h2>
-                <p class="text-stone-600" style="line-height: 1.7;">
-                    {{ item.description }}
-                </p>
-                {% if item.tags %}
-                <div class="flex flex-wrap gap-2 pt-2">
-                    {% for item_tag in item.tags %}
-                    <span class="px-3 py-1 bg-amber-50 text-amber-700 rounded-full text-sm font-medium">
-                        {{ item_tag }}
-                    </span>
-                    {% endfor %}
-                </div>
-                {% endif %}
-            </div>
-        </a>
-    </article>
-    {% endfor %}
-</div>
+    
+    <ul class="post-list list-disc pl-5 space-y-2">
+        {% for item in items %}
+        <li>
+            <span class="text-muted text-sm font-sans">{{ item.date.strftime('%d %b %Y') }}</span>
+            <span class="text-muted mx-1">»</span>
+            <a href="{{ item.url }}" class="sidebar-link">{{ item.title }}</a>
+            <span class="text-muted text-xs font-sans">({{ item.type }})</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
 {% endblock %}

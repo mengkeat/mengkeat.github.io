@@ -1,29 +1,22 @@
 {% extends "base.html" %}
 
-{% block title %}Tags - Mengkeat's Digital Garden{% endblock %}
+{% block title %}Tags - Mengkeat's Blog{% endblock %}
 {% block description %}Browse content by tags{% endblock %}
 
 {% block content %}
-<div class="mb-12">
-    <h1 class="text-4xl md:text-5xl font-semibold text-stone-900 mb-6" style="line-height: 1.2; letter-spacing: -0.01em;">
-        Tags
-    </h1>
-    <p class="text-xl text-stone-600" style="line-height: 1.7;">
+<section>
+    <h1 class="text-2xl font-semibold text-primary mb-2">Tags</h1>
+    <p class="text-secondary mb-8">
         Explore content by topic.
     </p>
-</div>
-
-<div class="flex flex-wrap gap-4">
-    {% for tag, count in tags %}
-    <a href="/tags/{{ tag }}.html"
-       class="group px-6 py-3 bg-white border border-stone-200 rounded-lg hover:border-amber-600 hover:bg-amber-50 transition-all duration-200">
-        <div class="flex items-center space-x-2">
-            <span class="text-lg font-medium text-stone-900 group-hover:text-amber-700">{{ tag }}</span>
-            <span class="px-2 py-0.5 bg-stone-100 text-stone-600 group-hover:bg-amber-100 group-hover:text-amber-700 rounded-full text-sm font-medium">
-                {{ count }}
-            </span>
-        </div>
-    </a>
-    {% endfor %}
-</div>
+    
+    <div class="flex flex-wrap gap-3">
+        {% for tag, count in tags %}
+        <a href="/tags/{{ tag }}.html" class="inline-flex items-center gap-1 text-sm font-sans px-3 py-1 bg-gray-100 text-secondary rounded hover:bg-gray-200 transition-colors">
+            {{ tag }}
+            <span class="text-muted">({{ count }})</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
 {% endblock %}
