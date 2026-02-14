@@ -1,23 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Blog - Mengkeat's Blog{% endblock %}
-{% block description %}All blog posts and articles{% endblock %}
+{% block title %}Blog - Mengkeat{% endblock %}
 
 {% block content %}
-<section>
-    <h1 class="text-2xl font-semibold text-primary mb-2">Blog</h1>
-    <p class="text-secondary mb-8">
-        Long-form thoughts, technical deep dives, and explorations.
-    </p>
-    
-    <ul class="post-list list-disc pl-5 space-y-2">
-        {% for post in posts %}
-        <li>
-            <span class="text-muted text-sm font-sans">{{ post.date.strftime('%d %b %Y') }}</span>
-            <span class="text-muted mx-1">»</span>
-            <a href="{{ post.url }}" class="sidebar-link">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</section>
+<ul class="post-list">
+    {% for post in posts %}
+    <li>
+        <span class="date">{{ post.date.strftime('%b %d, %Y') }}</span>
+        <a href="{{ post.url }}" class="entry-link accent-{{ (loop.index0 % 7) + 1 }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}

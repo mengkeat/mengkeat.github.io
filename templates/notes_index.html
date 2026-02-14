@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}Notes - Mengkeat{% endblock %}
+
+{% block content %}
+<ul class="post-list">
+    {% for note in notes %}
+    <li>
+        <span class="date">{{ note.date.strftime('%b %d, %Y') }}</span>
+        <a href="{{ note.url }}" class="entry-link accent-{{ (loop.index0 % 7) + 1 }}">{{ note.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

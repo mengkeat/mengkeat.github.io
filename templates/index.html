@@ -1,46 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Mengkeat's Blog{% endblock %}
-{% block description %}A personal blog featuring thoughts and explorations in technology, programming, and life.{% endblock %}
+{% block title %}Mengkeat{% endblock %}
 
 {% block content %}
-<!-- Recent Posts Section -->
-<section class="mb-12">
-    <h2 class="text-xl font-semibold text-primary mb-6 pb-2 border-b border-gray-200">Recent Posts</h2>
-    
-    <ul class="post-list list-disc pl-5 space-y-2">
-        {% for post in recent_posts %}
-        <li>
-            <span class="text-muted text-sm font-sans">{{ post.date.strftime('%d %b %Y') }}</span>
-            <span class="text-muted mx-1">»</span>
-            <a href="{{ post.url }}" class="sidebar-link">{{ post.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    
-    <p class="mt-6">
-        <a href="/blog/" class="sidebar-link text-sm">View all posts →</a>
-    </p>
-</section>
-
-<!-- TIL Preview Section -->
-{% if recent_tils %}
-<section class="mb-12">
-    <h2 class="text-xl font-semibold text-primary mb-6 pb-2 border-b border-gray-200">Today I Learned</h2>
-    
-    <ul class="post-list list-disc pl-5 space-y-2">
-        {% for til in recent_tils %}
-        <li>
-            <span class="text-muted text-sm font-sans">{{ til.date.strftime('%d %b %Y') }}</span>
-            <span class="text-muted mx-1">»</span>
-            <a href="{{ til.url }}" class="sidebar-link">{{ til.title }}</a>
-        </li>
-        {% endfor %}
-    </ul>
-    
-    <p class="mt-6">
-        <a href="/til/" class="sidebar-link text-sm">View all TILs →</a>
-    </p>
-</section>
-{% endif %}
+<ul class="post-list">
+    {% for post in posts %}
+    <li>
+        <span class="date">{{ post.date.strftime('%b %d, %Y') }}</span>
+        <a href="{{ post.url }}" class="entry-link accent-{{ (loop.index0 % 7) + 1 }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% endblock %}

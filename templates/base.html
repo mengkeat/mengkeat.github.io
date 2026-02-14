@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="{% block description %}A blog about daily thoughts and learning{% endblock %}">
+    <meta name="description" content="{% block description %}Mengkeat's blog{% endblock %}">
     <link rel="icon" type="image/svg+xml" href="/static/favicon.ico">
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- KaTeX CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css"
@@ -31,116 +29,313 @@
                 throwOnError: false
             });"></script>
 
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#333333',
-                        secondary: '#666666',
-                        muted: '#999999',
-                        link: '#2563eb',
-                        'link-hover': '#1d4ed8',
-                        bg: '#ffffff',
-                        'bg-alt': '#f9fafb',
-                    },
-                    fontFamily: {
-                        serif: ['Lora', 'Georgia', 'serif'],
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                    },
-                }
+    <title>{% block title %}Mengkeat{% endblock %}</title>
+
+    <style>
+        :root {
+            --bg: #fff;
+            --text: #000000e0;
+            --text-strong: #000;
+            --text-muted: #0000008c;
+            --link: #05c;
+            --border: #e1e4e8;
+            --accent-1: #7c3aed;
+            --accent-2: #c2410c;
+            --accent-3: #0369a1;
+            --accent-4: #0d9488;
+            --accent-5: #8a6914;
+            --accent-6: #4d7c0f;
+            --accent-7: #c026a3;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #000;
+                --text: #ffffffd9;
+                --text-strong: #fffffff2;
+                --text-muted: #ffffff80;
+                --link: #3fb950;
+                --border: #222;
+                --accent-1: #c084fc;
+                --accent-2: #fb923c;
+                --accent-3: #38bdf8;
+                --accent-4: #2dd4bf;
+                --accent-5: #f0c040;
+                --accent-6: #a3e635;
+                --accent-7: #f472b6;
             }
         }
-    </script>
 
-    <!-- Custom styles -->
-    <style>
-        body { font-family: 'Lora', Georgia, serif; }
-        
-        .codehilite { background: #f8f8f8; padding: 1rem; border-radius: 0.25rem; overflow-x: auto; margin: 1.5rem 0; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; font-size: 0.875rem; }
-        .codehilite pre { margin: 0; }
+        * {
+            box-sizing: border-box;
+        }
 
-        /* Prose styling for markdown content */
-        .prose { max-width: none; }
-        .prose h1 { font-size: 1.875rem; font-weight: 600; margin: 2rem 0 1rem; color: #333; font-family: 'Lora', Georgia, serif; }
-        .prose h2 { font-size: 1.5rem; font-weight: 600; margin: 1.75rem 0 0.875rem; color: #333; font-family: 'Lora', Georgia, serif; }
-        .prose h3 { font-size: 1.25rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: #333; font-family: 'Lora', Georgia, serif; }
-        .prose p { margin: 1rem 0; line-height: 1.8; color: #444; }
-        .prose a { color: #2563eb; text-decoration: none; }
-        .prose a:hover { text-decoration: underline; }
-        .prose ul, .prose ol { margin: 1rem 0; padding-left: 1.5rem; color: #444; line-height: 1.8; }
-        .prose li { margin: 0.375rem 0; }
-        .prose code { background: #f3f4f6; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; color: #333; font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace; }
-        .prose pre code { background: none; padding: 0; }
-        .prose blockquote { border-left: 3px solid #ddd; padding-left: 1rem; margin: 1.5rem 0; color: #666; font-style: italic; }
-        .prose img { max-width: 100%; height: auto; margin: 1.5rem 0; }
-        .prose hr { border: none; border-top: 1px solid #e5e7eb; margin: 2rem 0; }
-        .prose table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
-        .prose th, .prose td { border: 1px solid #e5e7eb; padding: 0.5rem 0.75rem; text-align: left; }
-        .prose th { background: #f9fafb; font-weight: 600; }
+        body {
+            font-family: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+            line-height: 1.6;
+            color: var(--text);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            background: var(--bg);
+            font-size: 15px;
+        }
 
-        /* Post list styling */
-        .post-list li { margin: 0.5rem 0; }
-        .post-list li::marker { color: #666; }
-        
-        /* Sidebar styling */
-        .sidebar-link { color: #2563eb; text-decoration: none; }
-        .sidebar-link:hover { text-decoration: underline; }
+        a {
+            color: var(--text-strong);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        header h1 a {
+            color: var(--text-strong);
+        }
+
+        header h1 a:hover {
+            text-decoration: none;
+        }
+
+        nav {
+            margin-top: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            margin-right: 1.5rem;
+        }
+
+        nav a:hover {
+            color: var(--text-strong);
+            text-decoration: none;
+        }
+
+        .nav-icon {
+            opacity: 0.75;
+            margin-right: 0.3rem;
+        }
+
+        main {
+            min-height: 60vh;
+        }
+
+        footer {
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Post list styles */
+        .post-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .post-list li {
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+        }
+
+        .post-list a {
+            font-weight: 500;
+        }
+
+        .entry-link {
+            color: var(--text-strong);
+        }
+
+        .entry-link:hover {
+            text-decoration: none;
+            opacity: 0.85;
+        }
+
+        .accent-1 { color: var(--accent-1); }
+        .accent-2 { color: var(--accent-2); }
+        .accent-3 { color: var(--accent-3); }
+        .accent-4 { color: var(--accent-4); }
+        .accent-5 { color: var(--accent-5); }
+        .accent-6 { color: var(--accent-6); }
+        .accent-7 { color: var(--accent-7); }
+
+        .post-list .date {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            white-space: nowrap;
+            min-width: 6rem;
+        }
+
+        /* Article styles */
+        article header {
+            margin-bottom: 2rem;
+        }
+
+        article h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem;
+            line-height: 1.3;
+        }
+
+        article .meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        article .content {
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+
+        article .content h2 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+        }
+
+        article .content h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin: 1.5rem 0 0.75rem;
+        }
+
+        article .content p {
+            margin: 1rem 0;
+        }
+
+        article .content a {
+            color: var(--link);
+        }
+
+        article .content ul, article .content ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        article .content li {
+            margin: 0.25rem 0;
+        }
+
+        article .content code {
+            background: color-mix(in srgb, var(--border) 35%, var(--bg));
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+        }
+
+        article .content pre {
+            background: color-mix(in srgb, var(--border) 25%, var(--bg));
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+        }
+
+        article .content pre code {
+            background: none;
+            padding: 0;
+        }
+
+        article .content blockquote {
+            border-left: 3px solid var(--border);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+            color: var(--text-muted);
+        }
+
+        article .content img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tags */
+        .tags {
+            margin-top: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-right: 0.75rem;
+        }
+
+        /* Code highlighting */
+        .codehilite {
+            background: color-mix(in srgb, var(--border) 25%, var(--bg));
+            border: 1px solid var(--border);
+            padding: 1rem;
+            border-radius: 6px;
+            overflow-x: auto;
+        }
+
+        .codehilite pre {
+            margin: 0;
+            font-family: 'SFMono-Regular', Consolas, monospace;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1.5rem 1rem;
+            }
+
+            .post-list li {
+                flex-direction: column;
+                gap: 0.25rem;
+                margin-bottom: 1.25rem;
+            }
+
+            article h1 {
+                font-size: 1.5rem;
+            }
+        }
     </style>
-
-    <title>{% block title %}Mengkeat's Blog{% endblock %}</title>
 </head>
-<body class="bg-white text-primary antialiased">
-    <div class="min-h-screen">
-        <!-- Two Column Layout -->
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
-            <div class="flex flex-col md:flex-row md:gap-12 lg:gap-16">
-                
-                <!-- Sidebar -->
-                <aside class="md:w-64 lg:w-72 flex-shrink-0 mb-8 md:mb-0">
-                    <div class="md:sticky md:top-8">
-                        <!-- Site Title -->
-                        <h1 class="text-2xl font-semibold mb-6">
-                            <a href="/" class="text-primary hover:text-link transition-colors">Mengkeat's Blog</a>
-                        </h1>
-                        
-                        <!-- Author Info -->
-                        <div class="mb-6">
-                            <p class="text-secondary text-sm leading-relaxed">
-                                A personal blog on programming, technology, and things I learn along the way.
-                            </p>
-                        </div>
-                        
-                        <!-- Navigation -->
-                        <nav class="border-t border-gray-200 pt-6">
-                            <h2 class="text-xs font-sans font-semibold text-muted uppercase tracking-wide mb-3">Navigation</h2>
-                            <ul class="space-y-2 text-sm">
-                                <li><a href="/" class="sidebar-link">Home</a></li>
-                                <li><a href="/blog/" class="sidebar-link">Blog</a></li>
-                                <li><a href="/til/" class="sidebar-link">TIL</a></li>
-                                <li><a href="/tags/" class="sidebar-link">Tags</a></li>
-                            </ul>
-                        </nav>
-                    </div>
-                </aside>
+<body>
+    <header>
+        <h1><a href="/">Mengkeat</a></h1>
+        <nav>
+            <a href="/"><span class="nav-icon">⌂</span>home</a>
+            <a href="/blog/"><span class="nav-icon">✎</span>blog</a>
+            <a href="/notes/"><span class="nav-icon">•</span>notes</a>
+            <a href="/tags/"><span class="nav-icon">#</span>tags</a>
+        </nav>
+    </header>
 
-                <!-- Main Content -->
-                <main class="flex-1 min-w-0">
-                    {% block content %}{% endblock %}
-                </main>
-            </div>
-        </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
 
-        <!-- Footer -->
-        <footer class="border-t border-gray-200 mt-16">
-            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <p class="text-muted text-sm text-center">
-                    © {{ now.year }} Mengkeat. Built with Python.
-                </p>
-            </div>
-        </footer>
-    </div>
+    <footer>
+        &copy; {{ now.year }}
+    </footer>
 </body>
 </html>
