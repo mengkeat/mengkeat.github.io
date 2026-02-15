@@ -3,11 +3,22 @@
 {% block title %}Mengkeat{% endblock %}
 
 {% block content %}
+<h2 class="section-title">Articles</h2>
 <ul class="post-list">
     {% for post in posts %}
     <li>
         <span class="date">{{ post.date.strftime('%b %d, %Y') }}</span>
         <a href="{{ post.url }}" class="entry-link accent-{{ (loop.index0 % 7) + 1 }}">{{ post.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<h2 class="section-title">Notes</h2>
+<ul class="post-list">
+    {% for note in notes %}
+    <li>
+        <span class="date">{{ note.date.strftime('%b %d, %Y') }}</span>
+        <a href="{{ note.url }}" class="entry-link accent-{{ (loop.index0 % 7) + 1 }}">{{ note.title }}</a>
     </li>
     {% endfor %}
 </ul>

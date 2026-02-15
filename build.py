@@ -157,8 +157,7 @@ class SiteBuilder:
                        post=note)
 
         # Build indexes
-        all_content = sorted(self.posts + self.notes, key=lambda x: x['date'], reverse=True)
-        self.render('index.html', self.output_dir / "index.html", posts=all_content)
+        self.render('index.html', self.output_dir / "index.html", posts=self.posts, notes=self.notes)
         self.render('blog_index.html', self.output_dir / "blog" / "index.html", posts=self.posts)
         self.render('notes_index.html', self.output_dir / "notes" / "index.html", notes=self.notes)
 
